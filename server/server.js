@@ -20,6 +20,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var favicon = require('serve-favicon');
 var app = express();
 
 // this session will be used to save the oAuth token
@@ -35,6 +36,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+// favicon
+app.use(favicon(__dirname + '/../www/favicon.ico'));
 
 // prepare server routing
 app.use('/', express.static(__dirname + '/../www')); // redirect static calls

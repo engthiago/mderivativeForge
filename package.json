@@ -16,7 +16,8 @@
     "jquery": "*",
     "jstree": "*",
     "moment": "*",
-    "request": "*"
+    "request": "*",
+    "serve-favicon": "*"
   },
   "repository": {
     "type": "git",
