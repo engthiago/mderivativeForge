@@ -153,7 +153,7 @@ router.post('/integration/isReadyToShow', jsonParser, function (req, res) {
       else {
         res.status(200).json({
           readyToShow: false,
-          status: 'Translation in progress: ' + manifest.progress,
+          status: 'Translation ' + manifest.status + ': ' + manifest.progress,
           urn: ossUrn
         });
       }
