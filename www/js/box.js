@@ -174,6 +174,9 @@ function isFileSupported(fileName, callback) {
     type: 'GET',
     dataType: 'json',
     success: function (supportedFormats) {
+      // for a zip we need to define the rootFilename, need extra work (WIP)
+      // let's remove it from the supported formats, for now
+      supportedFormats.splice(supportedFormats.indexOf('zip'),1);
       var supported = ( jQuery.inArray(extension, supportedFormats) >= 0);
       callback(supported);
     },

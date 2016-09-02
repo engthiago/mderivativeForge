@@ -141,8 +141,8 @@ router.post('/integration/isReadyToShow', jsonParser, function (req, res) {
     mdOAuth.accessToken = tokenInternal;
 
     var derivative = new ForgeModelDerivative.DerivativesApi();
-    derivative.getManifest(ossUrn, null).then(function(manifest){
-      if (manifest.status==='success'){
+    derivative.getManifest(ossUrn, null).then(function (manifest) {
+      if (manifest.status === 'success') {
         res.status(200).json({
           readyToShow: true,
           status: 'Translation completed.',
