@@ -53,7 +53,7 @@ router.post('/integration/sendToTranslation', jsonParser, function (req, res) {
     box.users.get(box.CURRENT_USER_ID, null, function (err, user) {
       // Forge OSS Bucket Name: username + userId (no spaces, lower case)
       // that way we have one bucket for each Box account using this application
-      var ossBucketKey = (user.name.replace(/ /g, '') + user.id).toLowerCase();
+      var ossBucketKey = (user.name.replace(/\W+/g, '') + user.id).toLowerCase();
 
       var ossClient = ForgeOSS.ApiClient.instance;
       var ossOAuth = ossClient.authentications ['oauth2_application']; // not the 'oauth2_access_code', as per documentation
