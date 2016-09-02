@@ -36,7 +36,7 @@ router.get('/box/authenticate', function (req, res) {
     'https://account.box.com/api/oauth2/authorize?response_type=code&' +
     '&client_id=' + config.box.credentials.client_id +
     '&redirect_uri=' + config.box.callbackURL +
-    '&state=autodeskforge';
+    '&state=forgeboxviewer';
   res.end(url);
 });
 
@@ -51,7 +51,7 @@ router.get('/callback/box', function (req, res) {
   });
 
   sdk.getTokensAuthorizationCodeGrant(code, null, function (err, tokenInfo) {
-    if (err) console.log(err);
+    if (err) {res.end(JSON.stringify(err));return;}
     tokenSession.setBoxToken(tokenInfo.accessToken)
     console.log('Box token: ' + tokenSession.getBoxToken()); // debug
     res.redirect('/');
