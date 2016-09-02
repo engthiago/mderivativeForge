@@ -53,7 +53,7 @@ router.post('/integration/sendToTranslation', jsonParser, function (req, res) {
     box.users.get(box.CURRENT_USER_ID, null, function (err, user) {
       // Forge OSS Bucket Name: username + userId (no spaces, lower case)
       // that way we have one bucket for each Box account using this application
-      var ossBucketKey = (user.name.replace(/ /g, '') + user.id).toLocaleLowerCase();
+      var ossBucketKey = (user.name.replace(/ /g, '') + user.id).toLowerCase();
 
       var ossClient = ForgeOSS.ApiClient.instance;
       var ossOAuth = ossClient.authentications ['oauth2_application']; // not the 'oauth2_access_code', as per documentation
@@ -66,6 +66,7 @@ router.post('/integration/sendToTranslation', jsonParser, function (req, res) {
 
       buckets.createBucket(postBuckets, null, function (err, data, response) {
         if (response.statusCode != 200 && response.statusCode != 409 /*bucket already exists*/) {
+          console.log('Error creating bucket ' + ossBucketKey + ' ' + response.statusCode);
           res.status(response.statusCode).json({error: "Cannot translate: Create Bucket " + response.statusMessage});
           return;
         }
