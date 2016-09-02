@@ -51,6 +51,7 @@ router.get('/callback/box', function (req, res) {
   });
 
   sdk.getTokensAuthorizationCodeGrant(code, null, function (err, tokenInfo) {
+    if (err) console.log(err);
     tokenSession.setBoxToken(tokenInfo.accessToken)
     console.log('Box token: ' + tokenSession.getBoxToken()); // debug
     res.redirect('/');
