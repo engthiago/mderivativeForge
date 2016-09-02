@@ -43,16 +43,16 @@ router.get('/box/authenticate', function (req, res) {
 // wait for box callback (oAuth callback)
 router.get('/callback/box', function (req, res) {
   var code = req.query.code;
-  var tokenSession = new token(req.session);
 
   var sdk = new BoxSDK({
     clientID: config.box.credentials.client_id, // required
     clientSecret: config.box.credentials.client_secret // required
   });
-
+  console.log(code);
   sdk.getTokensAuthorizationCodeGrant(code, null, function (err, tokenInfo) {
     if (err) {res.end(JSON.stringify(err));return;}
-    tokenSession.setBoxToken(tokenInfo.accessToken)
+    var tokenSession = new token(req.session);
+    tokenSession.setBoxToken(tokenInfo.accessToken);
     console.log('Box token: ' + tokenSession.getBoxToken()); // debug
     res.redirect('/');
   });
