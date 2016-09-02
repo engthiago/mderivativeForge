@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Transparent use of Model Derivative to view Box compatible files.",
   "dependencies": {
+    "body-parser": "*",
     "bootstrap": "*",
     "box-node-sdk": "*",
     "cookie-parser": "*",
