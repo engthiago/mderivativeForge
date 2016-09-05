@@ -173,7 +173,7 @@ function boxCustomMenu(boxNode) {
 var re = /(?:\.([^.]+))?$/; // regex to extract file extension
 
 function isFileSupported(fileName, callback) {
-  var extension = re.exec(fileName)[1];
+  var extension = (re.exec(fileName)[1]).toLowerCase();
   jQuery.ajax({
     url: '/md/viewerFormats',
     contentType: 'application/json',
