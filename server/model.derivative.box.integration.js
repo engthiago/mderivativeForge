@@ -51,6 +51,12 @@ router.post('/integration/sendToTranslation', jsonParser, function (req, res) {
 
     var box = sdk.getBasicClient(tokenSession.getBoxToken());
     box.users.get(box.CURRENT_USER_ID, null, function (err, user) {
+      if (err || user == null) {
+        console.log('model.derivative.box.integration:sentToTranslation:box.user.get => ' + err);
+        res.status(500).json({error: 'Cannot get Box user information, please try again.'});
+        return;
+      }
+
       // Forge OSS Bucket Name: username + userId (no spaces, lower case)
       // that way we have one bucket for each Box account using this application
       var ossBucketKey = (user.name.replace(/\W+/g, '') + user.id).toLowerCase();
