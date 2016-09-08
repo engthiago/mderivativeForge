@@ -25,7 +25,7 @@
     },
     "BOX_CALLBACK_URL": {
       "description": "Redirect URI of your Box app, required for 3-legged OAuth",
-      "value": "https://<<YOUR HEROKU APP NAME HERE>>.herokuapp.com/callback/box"
+      "value": "https://<<YOUR HEROKU APP NAME HERE>>.herokuapp.com/api/box/callback/oauth"
     }
   },
   "website": "https://developer.autodesk.com/",
