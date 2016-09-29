@@ -168,7 +168,7 @@ router.post('/integration/isReadyToShow', jsonParser, function (req, res) {
 });
 
 String.prototype.toBase64 = function () {
-  return new Buffer(this).toString('base64');
+  return new Buffer(this).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 };
 
 function translateData(ossUrn) {
